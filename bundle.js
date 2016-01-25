@@ -3,11 +3,21 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-ReactDOM.render(React.createElement(
-  'h1',
-  null,
-  'Hello, world!'
-), document.getElementById('app-container'));
+var Controller = React.createClass({
+	displayName: 'Controller',
+
+	render: function () {
+		return React.createElement(
+			'div',
+			null,
+			'Hello, world! I am a RecipeBook.'
+		);
+	}
+});
+/* controller view calls render */
+ReactDOM.render(
+/* Recipe book is just a function, attrs are args */
+React.createElement(Controller, null), document.getElementById('app-container'));
 
 },{"react":158,"react-dom":2}],2:[function(require,module,exports){
 'use strict';

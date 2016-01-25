@@ -5,7 +5,7 @@ var gulp = require('gulp'),
 
 
 
-gulp.task('doesWork', function () {
+gulp.task('css-builder', function () {
     gulp.src('./src/scss/**.scss')
         .pipe(sourcemaps.init())
         .pipe(sass())
@@ -13,7 +13,7 @@ gulp.task('doesWork', function () {
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(autoprefixer())
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('./dest/scss'))
+        .pipe(gulp.dest('./dest/css'))
 });
 
-gulp.task('default', ['doesWork']);
+gulp.task('default', ['css-builder']);

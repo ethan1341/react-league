@@ -1,0 +1,22 @@
+{
+  "name": "react-league",
+  "version": "0.0.0",
+  "homepage": "https://github.com/ethan1341/react-league",
+  "authors": [
+    "Ethan Pidcock"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "~3.3.6"
+  }
+}

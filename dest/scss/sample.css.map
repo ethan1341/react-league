@@ -1,1 +1,0 @@
-{"version":3,"sources":["sample.scss","sample.css"],"names":[],"mappings":"AAAA;EACC,+CAA2B;EAA3B,uCAA2B,EAC3B;;AAED;EACC,YAAY,EACZ;;ACAD,qRAAqR","file":"sample.css","sourceRoot":"/source/","sourcesContent":["body {\n\tbackground: linear-gradient(red, blue);\n}\n\nspan {\n\tcolor: blue;\n}"]}
