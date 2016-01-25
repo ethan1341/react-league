@@ -2,22 +2,122 @@
 // main.js
 var React = require('react');
 var ReactDOM = require('react-dom');
+var NavBar = React.createClass({
+  displayName: 'NavBar',
 
-var Controller = React.createClass({
-	displayName: 'Controller',
-
-	render: function () {
-		return React.createElement(
-			'div',
-			null,
-			'Hello, world! I am a RecipeBook.'
-		);
-	}
+  render: function () {
+    return React.createElement(
+      'nav',
+      { className: 'navbar navbar-inverse' },
+      React.createElement(
+        'div',
+        { className: 'container-fluid' },
+        React.createElement(
+          'div',
+          { className: 'navbar-header' },
+          React.createElement(
+            'button',
+            { type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#navbar-collapse', 'aria-expanded': 'false' },
+            React.createElement(
+              'span',
+              { className: 'sr-only' },
+              'Toggle navigation'
+            ),
+            React.createElement('span', { className: 'icon-bar' }),
+            React.createElement('span', { className: 'icon-bar' }),
+            React.createElement('span', { className: 'icon-bar' })
+          ),
+          React.createElement(NavBrand, { linkTo: this.props.brand.linkTo, text: this.props.brand.text })
+        ),
+        React.createElement(
+          'div',
+          { className: 'collapse navbar-collapse', id: 'navbar-collapse' },
+          React.createElement(NavMenu, { links: this.props.links })
+        )
+      )
+    );
+  }
 });
-/* controller view calls render */
-ReactDOM.render(
-/* Recipe book is just a function, attrs are args */
-React.createElement(Controller, null), document.getElementById('app-container'));
+
+var NavBrand = React.createClass({
+  displayName: 'NavBrand',
+
+  render: function () {
+    return React.createElement(
+      'a',
+      { className: 'navbar-brand', href: this.props.linkTo },
+      this.props.text
+    );
+  }
+});
+
+var NavMenu = React.createClass({
+  displayName: 'NavMenu',
+
+  render: function () {
+    var links = this.props.links.map(function (link) {
+      if (link.dropdown) {
+        return React.createElement(NavLinkDropdown, { links: link.links, text: link.text });
+      } else {
+        return React.createElement(NavLink, { linkTo: link.linkTo, text: link.text });
+      }
+    });
+    return React.createElement(
+      'ul',
+      { className: 'nav navbar-nav' },
+      links
+    );
+  }
+});
+
+var NavLinkDropdown = React.createClass({
+  displayName: 'NavLinkDropdown',
+
+  render: function () {
+    var links = this.props.links.map(function (link) {
+      return React.createElement(NavLink, { linkTo: link.linkTo, text: link.text });
+    });
+    return React.createElement(
+      'li',
+      { className: 'dropdown' },
+      React.createElement(
+        'a',
+        { href: '#', className: 'dropdown-toggle', 'data-toggle': 'dropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false' },
+        this.props.text,
+        React.createElement('span', { className: 'caret' })
+      ),
+      React.createElement(
+        'ul',
+        { className: 'dropdown-menu' },
+        links
+      )
+    );
+  }
+});
+
+var NavLink = React.createClass({
+  displayName: 'NavLink',
+
+  render: function () {
+    return React.createElement(
+      'li',
+      null,
+      React.createElement(
+        'a',
+        { href: this.props.linkTo },
+        this.props.text
+      )
+    );
+  }
+});
+
+// set data
+var navbar = {};
+navbar.brand = { linkTo: "#", text: "React Bootstrap Navbar" };
+navbar.links = [{ linkTo: "#", text: "Link 1" }, { linkTo: "#", text: "Link 2" }, { dropdown: true, text: "Dropdown", links: [{ linkTo: "#", text: "Dropdown Link 1" }, { linkTo: "#", text: "Dropdown Link 2" }] }];
+
+// render NavBar
+React.render(React.createElement(NavBar, navbar), document.getElementById("navbar"));
 
 },{"react":158,"react-dom":2}],2:[function(require,module,exports){
 'use strict';
